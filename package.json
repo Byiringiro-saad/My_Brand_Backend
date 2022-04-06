@@ -1,0 +1,25 @@
+{
+  "name": "my_brand_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "routes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Byiringiro-saad/My_Brand_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Byiringiro-saad/My_Brand_Backend/issues"
+  },
+  "homepage": "https://github.com/Byiringiro-saad/My_Brand_Backend#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10"
+  }
+}
