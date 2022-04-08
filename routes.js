@@ -40,7 +40,8 @@ router.get("/blog", blogs);
 router.get("/blog/:id", blog);
 router.put("/blog/:id", updateBlog);
 router.delete("/blog/:id", deleteBlog);
-router.post("/blog/create", upload.single("picture"), createBlog);
+// router.post("/blog/create", upload.single("picture"), createBlog);
+router.post("/blog/create", createBlog);
 
 //works
 router.get("/work", works);

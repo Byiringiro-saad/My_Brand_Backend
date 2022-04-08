@@ -5,10 +5,10 @@ const blogSchema = new Schema({
     type: String,
     requierd: true,
   },
-  image: {
-    type: String,
-    required: true,
-  },
+  // image: {
+  //   type: String,
+  //   required: true,
+  // },
   title: {
     type: String,
     required: true,
