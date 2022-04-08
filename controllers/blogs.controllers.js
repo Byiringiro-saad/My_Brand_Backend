@@ -4,7 +4,7 @@ const Blog = require("../models/blogs.model");
 
 exports.createBlog = async (req, res) => {
   const data = {
-    image: req.file.path,
+    // image: req.file.path,
     title: req.body.title,
   };
 
@@ -20,20 +20,18 @@ exports.createBlog = async (req, res) => {
 
       const blog = new Blog({
         file: file.name,
-        image: data.image,
-        title: data.image,
+        // image: data.image,
+        title: data.title,
         createdAt: Date.now(),
       });
 
-      blog.save().catch((error) => {
-        throw new Error(error.message);
+      blog.save().then((response) => {
+        return res.json({
+          status: "success",
+          message: "blog created",
+        });
       });
     }
-
-    return res.json({
-      status: "success",
-      message: "blog created",
-    });
   } catch (error) {
     return res.json({
       status: "error",
@@ -85,9 +83,9 @@ exports.blogs = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
   const data = {
-    image: req.file.path,
+    // image: req.file.path,
     title: req.body.title,
-    id: req.params.blog,
+    id: req.params.id,
   };
 
   try {
@@ -99,33 +97,27 @@ exports.updateBlog = async (req, res) => {
     } else {
       await Blog.findById(data.id).then(async (blog) => {
         const file = req.files.blog;
-        let content = fs.readFileSync(file);
         const filePath = path.join("./blogs", blog.file);
 
-        fs.writeFileSync(
-          filePath,
-          content.toString(),
-          { flag: "w" },
-          async (error) => {
-            if (error) {
-              throw new Error(error.message);
-            } else {
-              await Blog.findByIdAndUpdate(data.id, {
-                image: data.image,
-                title: data.image,
-              })
-                .then((response) => {
-                  return res.json({
-                    status: "success",
-                    message: "blog updated",
-                  });
-                })
-                .catch((error) => {
-                  throw new Error(error.message);
+        fs.writeFile(filePath, file.data, { flag: "w" }, async (error) => {
+          if (error) {
+            throw new Error(error.message);
+          } else {
+            await Blog.findByIdAndUpdate(data.id, {
+              // image: data.image,
+              title: data.title,
+            })
+              .then((response) => {
+                return res.json({
+                  status: "success",
+                  message: "blog updated",
                 });
-            }
+              })
+              .catch((error) => {
+                throw new Error(error.message);
+              });
           }
-        );
+        });
       });
     }
   } catch (error) {
@@ -159,6 +151,20 @@ exports.deleteBlog = async (req, res) => {
       status: "success",
       message: "blog deleted",
     });
+  } catch (error) {
+    return res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
+
+exports.likeBlog = async (req, res) => {
+  const data = {
+    id: req.params.id,
+  };
+
+  try {
   } catch (error) {
     return res.json({
       status: "error",
