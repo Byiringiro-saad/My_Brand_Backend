@@ -158,3 +158,17 @@ exports.deleteBlog = async (req, res) => {
     });
   }
 };
+
+exports.likeBlog = async (req, res) => {
+  const data = {
+    id: req.params.id,
+  };
+
+  try {
+  } catch (error) {
+    return res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
