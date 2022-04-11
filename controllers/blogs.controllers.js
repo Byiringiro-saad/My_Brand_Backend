@@ -62,17 +62,13 @@ exports.blog = async (req, res) => {
 
 exports.blogs = async (req, res) => {
   try {
-    await Blog.find({})
-      .then((blogs) => {
-        return res.json({
-          status: "success",
-          message: "all blogs",
-          data: blogs,
-        });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
+    await Blog.find({}).then((blogs) => {
+      return res.json({
+        status: "success",
+        message: "all blogs",
+        data: blogs,
       });
+    });
   } catch (error) {
     return res.json({
       status: "error",
@@ -106,16 +102,12 @@ exports.updateBlog = async (req, res) => {
             await Blog.findByIdAndUpdate(data.id, {
               // image: data.image,
               title: data.title,
-            })
-              .then((response) => {
-                return res.json({
-                  status: "success",
-                  message: "blog updated",
-                });
-              })
-              .catch((error) => {
-                throw new Error(error.message);
+            }).then((response) => {
+              return res.json({
+                status: "success",
+                message: "blog updated",
               });
+            });
           }
         });
       });
@@ -134,22 +126,16 @@ exports.deleteBlog = async (req, res) => {
   };
 
   try {
-    await Blog.findById(data.id)
-      .then(async (blog) => {
-        const filePath = path.join("./blogs", blog.file);
-        fs.unlink(filePath, async () => {
-          await Blog.findByIdAndRemove(data.id).catch((error) => {
-            throw new Error(error.message);
+    await Blog.findById(data.id).then(async (blog) => {
+      const filePath = path.join("./blogs", blog.file);
+      fs.unlink(filePath, async () => {
+        await Blog.findByIdAndRemove(data.id).then(() => {
+          return res.json({
+            status: "success",
+            message: "blog deleted",
           });
         });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
       });
-
-    return res.json({
-      status: "success",
-      message: "blog deleted",
     });
   } catch (error) {
     return res.json({
