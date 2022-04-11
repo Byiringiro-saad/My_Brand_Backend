@@ -19,13 +19,11 @@ exports.createWork = async (req, res) => {
       createdAt: Date.now(),
     });
 
-    work.save().catch((error) => {
-      throw new Error(error.message);
-    });
-
-    return res.json({
-      status: "success",
-      message: "work created",
+    work.save().then(() => {
+      return res.json({
+        status: "success",
+        message: "work created",
+      });
     });
   } catch (error) {
     return res.json({
@@ -41,17 +39,13 @@ exports.work = async (req, res) => {
   };
 
   try {
-    await Work.findById(data.id)
-      .then(async (work) => {
-        return res.json({
-          status: "success",
-          message: "work",
-          data: work,
-        });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
+    await Work.findById(data.id).then(async (work) => {
+      return res.json({
+        status: "success",
+        message: "work",
+        data: work,
       });
+    });
   } catch (error) {
     return res.json({
       status: "error",
@@ -62,17 +56,13 @@ exports.work = async (req, res) => {
 
 exports.works = async (req, res) => {
   try {
-    await Work.find({})
-      .then(async (works) => {
-        return res.json({
-          status: "success",
-          message: "works",
-          data: works,
-        });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
+    await Work.find({}).then(async (works) => {
+      return res.json({
+        status: "success",
+        message: "works",
+        data: works,
       });
+    });
   } catch (error) {
     return res.json({
       status: "error",
@@ -98,13 +88,11 @@ exports.updateWork = async (req, res) => {
       description: data.description,
       image: data.image,
       cards: data.cards,
-    }).catch((error) => {
-      throw new Error(error.message);
-    });
-
-    return res.json({
-      status: "success",
-      message: "work created",
+    }).then(() => {
+      return res.json({
+        status: "success",
+        message: "work created",
+      });
     });
   } catch (error) {
     return res.json({
@@ -120,13 +108,11 @@ exports.deleteWork = async (req, res) => {
   };
 
   try {
-    await Work.findByIdAndRemove(data.id).catch((error) => {
-      throw new Error(error.message);
-    });
-
-    return res.json({
-      status: "success",
-      message: "work deleted",
+    await Work.findByIdAndRemove(data.id).then(() => {
+      return res.json({
+        status: "success",
+        message: "work deleted",
+      });
     });
   } catch (error) {
     return res.json({

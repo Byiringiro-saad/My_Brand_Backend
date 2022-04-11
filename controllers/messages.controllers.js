@@ -23,13 +23,11 @@ exports.createMessage = async (req, res) => {
         createAt: Date.now(),
       });
 
-      await message.save().catch((error) => {
-        throw new Error(error.message);
-      });
-
-      return res.json({
-        status: "success",
-        message: "message sent",
+      await message.save().then(() => {
+        return res.json({
+          status: "success",
+          message: "message sent",
+        });
       });
     }
   } catch (error) {
@@ -46,8 +44,11 @@ exports.deleteMessage = async (req, res) => {
   };
 
   try {
-    await Message.findByIdAndRemove(data.id).catch((error) => {
-      throw new Error(error.message);
+    await Message.findByIdAndRemove(data.id).then(() => {
+      return res.json({
+        status: "success",
+        message: "message deleted",
+      });
     });
   } catch (error) {
     return res.json({
@@ -63,17 +64,13 @@ exports.message = async (req, res) => {
   };
 
   try {
-    await Message.findById(data.id)
-      .then((message) => {
-        return res.json({
-          status: "success",
-          message: "message",
-          data: message,
-        });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
+    await Message.findById(data.id).then((message) => {
+      return res.json({
+        status: "success",
+        message: "message",
+        data: message,
       });
+    });
   } catch (error) {
     return res.json({
       status: "error",
@@ -89,23 +86,18 @@ exports.reply = async (req, res) => {
   };
 
   try {
-    await Message.findById(data.messageId)
-      .then(async (message) => {
-        await sendMessage(message.email, data.reply)
-          .then(async (response) => {
-            await Message.findByIdAndUpdate(data.messageId, {
-              replied: true,
-            }).catch((error) => {
-              throw new Error(error.message);
-            });
-          })
-          .catch((error) => {
-            throw new Error(error.message);
+    await Message.findById(data.messageId).then(async (message) => {
+      await sendMessage(message.email, data.reply).then(async (response) => {
+        await Message.findByIdAndUpdate(data.messageId, {
+          replied: true,
+        }).then(() => {
+          return res.json({
+            status: "success",
+            message: "message replied",
           });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
+        });
       });
+    });
   } catch (error) {
     return res.json({
       status: "error",
@@ -116,17 +108,13 @@ exports.reply = async (req, res) => {
 
 exports.messages = async (req, res) => {
   try {
-    await Message.find({})
-      .then((response) => {
-        return res.json({
-          status: "success",
-          message: "all messages",
-          data: response,
-        });
-      })
-      .catch((error) => {
-        throw new Error(error.message);
+    await Message.find({}).then((response) => {
+      return res.json({
+        status: "success",
+        message: "all messages",
+        data: response,
       });
+    });
   } catch (error) {
     return res.json({
       status: "error",
