@@ -28,6 +28,14 @@ const {
   deleteWork,
 } = require("./controllers/work.controllers");
 
+const {
+  createExperience,
+  experience,
+  experiences,
+  updateExperience,
+  deleteExperience,
+} = require("./controllers/experience.controllers");
+
 //messages
 router.get("/message", messages);
 router.get("/message/:id", message);
@@ -40,8 +48,7 @@ router.get("/blog", blogs);
 router.get("/blog/:id", blog);
 router.put("/blog/:id", updateBlog);
 router.delete("/blog/:id", deleteBlog);
-// router.post("/blog/create", upload.single("picture"), createBlog);
-router.post("/blog/create", createBlog);
+router.post("/blog/create", upload.single("picture"), createBlog);
 
 //works
 router.get("/work", works);
@@ -49,5 +56,12 @@ router.get("/work/:id", work);
 router.put("/work/:id", updateWork);
 router.delete("/work/:id", deleteWork);
 router.post("/work/create", upload.single("picture"), createWork);
+
+//experiences
+router.get("/experience", experiences);
+router.get("/experience/:id", experience);
+router.put("/experience/:id", updateExperience);
+router.delete("/experience/:id", deleteExperience);
+router.post("/experience/create", createExperience);
 
 module.exports = router;
