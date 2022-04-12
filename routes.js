@@ -36,6 +36,13 @@ const {
   deleteExperience,
 } = require("./controllers/experience.controllers");
 
+const {
+  createSkill,
+  deleteSkill,
+  skills,
+  updateSkill,
+} = require("./controllers/skills.controllers");
+
 //messages
 router.get("/message", messages);
 router.get("/message/:id", message);
@@ -63,5 +70,11 @@ router.get("/experience/:id", experience);
 router.put("/experience/:id", updateExperience);
 router.delete("/experience/:id", deleteExperience);
 router.post("/experience/create", createExperience);
+
+//skills
+router.get("/skill", skills);
+router.put("/skill/:id", updateSkill);
+router.delete("/skill:id", deleteSkill);
+router.post("/skill/create", createSkill);
 
 module.exports = router;
