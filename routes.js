@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const adminAuth = require("./middlewares/admin.auth");
 
 const upload = require("./services/image.service");
 
@@ -51,43 +52,43 @@ const {
 } = require("./controllers/about.controllers");
 
 //messages
-router.get("/message", messages);
-router.get("/message/:id", message);
-router.post("/message/reply", reply);
-router.post("/message/add", createMessage);
-router.delete("/message/:id", deleteMessage);
+router.get("/message", adminAuth, messages);
+router.get("/message/:id", adminAuth, message);
+router.post("/message/reply", adminAuth, reply);
+router.post("/message/add", adminAuth, createMessage);
+router.delete("/message/:id", adminAuth, deleteMessage);
 
 //blogs
 router.get("/blog", blogs);
 router.get("/blog/:id", blog);
-router.put("/blog/:id", updateBlog);
-router.delete("/blog/:id", deleteBlog);
-router.post("/blog/create", upload.single("picture"), createBlog);
+router.put("/blog/:id", adminAuth, updateBlog);
+router.delete("/blog/:id", adminAuth, deleteBlog);
+router.post("/blog/create", adminAuth, upload.single("picture"), createBlog);
 
 //works
 router.get("/work", works);
-router.get("/work/:id", work);
-router.put("/work/:id", updateWork);
-router.delete("/work/:id", deleteWork);
-router.post("/work/create", upload.single("picture"), createWork);
+router.get("/work/:id", adminAuth, work);
+router.put("/work/:id", adminAuth, updateWork);
+router.delete("/work/:id", adminAuth, deleteWork);
+router.post("/work/create", adminAuth, upload.single("picture"), createWork);
 
 //experiences
 router.get("/experience", experiences);
-router.get("/experience/:id", experience);
-router.put("/experience/:id", updateExperience);
-router.delete("/experience/:id", deleteExperience);
-router.post("/experience/create", createExperience);
+router.get("/experience/:id", adminAuth, experience);
+router.put("/experience/:id", adminAuth, updateExperience);
+router.delete("/experience/:id", adminAuth, deleteExperience);
+router.post("/experience/create", adminAuth, createExperience);
 
 //skills
 router.get("/skill", skills);
-router.put("/skill/:id", updateSkill);
-router.delete("/skill:id", deleteSkill);
-router.post("/skill/create", createSkill);
+router.put("/skill/:id", adminAuth, updateSkill);
+router.delete("/skill:id", adminAuth, deleteSkill);
+router.post("/skill/create", adminAuth, createSkill);
 
 //about
-router.post("/about", createAbout);
 router.get("/about", about);
-router.put("/about/content/:id", updateAbout);
-router.put("/about/image/:id", updateImage);
+router.post("/about", adminAuth, createAbout);
+router.put("/about/image/:id", adminAuth, updateImage);
+router.put("/about/content/:id", adminAuth, updateAbout);
 
 module.exports = router;
