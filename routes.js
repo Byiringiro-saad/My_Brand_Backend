@@ -43,6 +43,13 @@ const {
   updateSkill,
 } = require("./controllers/skills.controllers");
 
+const {
+  createAbout,
+  about,
+  updateAbout,
+  updateImage,
+} = require("./controllers/about.controllers");
+
 //messages
 router.get("/message", messages);
 router.get("/message/:id", message);
@@ -76,5 +83,11 @@ router.get("/skill", skills);
 router.put("/skill/:id", updateSkill);
 router.delete("/skill:id", deleteSkill);
 router.post("/skill/create", createSkill);
+
+//about
+router.post("/about", createAbout);
+router.get("/about", about);
+router.put("/about/content/:id", updateAbout);
+router.put("/about/image/:id", updateImage);
 
 module.exports = router;
