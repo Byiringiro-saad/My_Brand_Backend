@@ -4,7 +4,7 @@ const Blog = require("../models/blogs.model");
 
 exports.createBlog = async (req, res) => {
   const data = {
-    // image: req.file.path,
+    image: req.file.path,
     title: req.body.title,
   };
 
@@ -20,7 +20,7 @@ exports.createBlog = async (req, res) => {
 
       const blog = new Blog({
         file: file.name,
-        // image: data.image,
+        image: data.image,
         title: data.title,
         createdAt: Date.now(),
       });
@@ -79,7 +79,6 @@ exports.blogs = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
   const data = {
-    // image: req.file.path,
     title: req.body.title,
     id: req.params.id,
   };
@@ -100,7 +99,6 @@ exports.updateBlog = async (req, res) => {
             throw new Error(error.message);
           } else {
             await Blog.findByIdAndUpdate(data.id, {
-              // image: data.image,
               title: data.title,
             }).then((response) => {
               return res.json({
