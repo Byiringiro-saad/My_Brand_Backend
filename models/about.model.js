@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-const aboutSchema = new mongoose.Schema({
+const aboutSchema = mongoose.Schema({
   file: {
     type: "string",
     required: true,

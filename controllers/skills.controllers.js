@@ -1,6 +1,6 @@
 import Skill from "../models/skills.model.js";
 
-exports.createSkill = async (req, res) => {
+export const createSkill = async (req, res) => {
   const data = {
     title: req.body.title,
     banner: req.body.banner,
@@ -28,7 +28,7 @@ exports.createSkill = async (req, res) => {
   }
 };
 
-exports.skills = async (req, res) => {
+export const skills = async (req, res) => {
   try {
     await Skill.find({}).then((dara) => {
       return res.json({
@@ -45,7 +45,7 @@ exports.skills = async (req, res) => {
   }
 };
 
-exports.updateSkill = async (req, res) => {
+export const updateSkill = async (req, res) => {
   const data = {
     id: req.params.id,
     title: req.body.title,
@@ -72,7 +72,7 @@ exports.updateSkill = async (req, res) => {
   }
 };
 
-exports.deleteSkill = async (req, res) => {
+export const deleteSkill = async (req, res) => {
   const data = {
     id: req.params.id,
   };

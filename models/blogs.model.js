@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-const blogSchema = new mongoose.Schema({
+const blogSchema = mongoose.Schema({
   file: {
     type: String,
     requierd: true,

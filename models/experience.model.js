@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-const experienceSchema = new mongoose.Schema({
+const experienceSchema = mongoose.Schema({
   company: {
     type: String,
     required: true,

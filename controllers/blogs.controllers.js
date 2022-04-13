@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import Blog from "../models/blogs.model.js";
 
-exports.createBlog = async (req, res) => {
+export const createBlog = async (req, res) => {
   const data = {
     image: req.file.path,
     title: req.body.title,
@@ -40,7 +40,7 @@ exports.createBlog = async (req, res) => {
   }
 };
 
-exports.blog = async (req, res) => {
+export const blog = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -60,7 +60,7 @@ exports.blog = async (req, res) => {
   }
 };
 
-exports.blogs = async (req, res) => {
+export const blogs = async (req, res) => {
   try {
     await Blog.find({}).then((blogs) => {
       return res.json({
@@ -77,7 +77,7 @@ exports.blogs = async (req, res) => {
   }
 };
 
-exports.updateBlog = async (req, res) => {
+export const updateBlog = async (req, res) => {
   const data = {
     title: req.body.title,
     id: req.params.id,
@@ -118,7 +118,7 @@ exports.updateBlog = async (req, res) => {
   }
 };
 
-exports.deleteBlog = async (req, res) => {
+export const deleteBlog = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -143,7 +143,7 @@ exports.deleteBlog = async (req, res) => {
   }
 };
 
-exports.likeBlog = async (req, res) => {
+export const likeBlog = async (req, res) => {
   const data = {
     id: req.params.id,
   };

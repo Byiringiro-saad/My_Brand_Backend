@@ -7,7 +7,7 @@ import Admin from "../models/user.model.js";
 
 dotenv.config();
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const data = {
     email: req.body.email,
     password: req.body.password,
@@ -52,7 +52,7 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   const data = {
     name: req.body.name,
     email: req.body.email,

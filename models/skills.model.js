@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-const skillSchema = new mongoose.Schema({
+const skillSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
