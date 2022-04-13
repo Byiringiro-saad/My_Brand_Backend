@@ -1,55 +1,58 @@
-const express = require("express");
-const router = express.Router();
-const adminAuth = require("./middlewares/admin.auth");
+import express from "express";
+import adminAuth from "./middlewares/admin.auth.js";
 
-const upload = require("./services/image.service");
+import upload from "./services/image.service.js";
+
+const router = express.Router();
 
 //controllers
-const {
+import {
   createMessage,
   deleteMessage,
   message,
   messages,
   reply,
-} = require("./controllers/messages.controllers");
+} from "./controllers/messages.controllers.js";
 
-const {
+import {
   createBlog,
   blog,
   blogs,
   deleteBlog,
   updateBlog,
-} = require("./controllers/blogs.controllers");
+} from "./controllers/blogs.controllers.js";
 
-const {
+import {
   createWork,
   work,
   works,
   updateWork,
   deleteWork,
-} = require("./controllers/work.controllers");
+} from "./controllers/work.controllers.js";
 
-const {
+import {
   createExperience,
   experience,
   experiences,
   updateExperience,
   deleteExperience,
-} = require("./controllers/experience.controllers");
+} from "./controllers/experience.controllers.js";
 
-const {
+import {
   createSkill,
   deleteSkill,
   skills,
   updateSkill,
-} = require("./controllers/skills.controllers");
+} from "./controllers/skills.controllers.js";
 
-const {
+import {
   createAbout,
   about,
   updateAbout,
   updateImage,
-} = require("./controllers/about.controllers");
+} from "./controllers/about.controllers.js";
+
+import {} from "./controllers/users.controllers.js";
 
 //messages
 router.get("/message", adminAuth, messages);
@@ -91,4 +94,4 @@ router.post("/about", adminAuth, createAbout);
 router.put("/about/image/:id", adminAuth, updateImage);
 router.put("/about/content/:id", adminAuth, updateAbout);
 
-module.exports = router;
+export default router;

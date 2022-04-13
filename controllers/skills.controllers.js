@@ -1,4 +1,4 @@
-const Skill = require("../models/skills.model");
+import Skill from "../models/skills.model.js";
 
 exports.createSkill = async (req, res) => {
   const data = {

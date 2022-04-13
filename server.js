@@ -1,12 +1,12 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const fileUpload = require("express-fileupload");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const _ = require("lodash");
+import express from "express";
+import mongoose from "mongoose";
+import fileUpload from "express-fileupload";
+import cors from "cors";
+import bodyParser from "body-parser";
+import morgan from "morgan";
+import _ from "lodash";
 
-const routes = require("./routes");
+import routes from "./routes.js";
 
 mongoose
   .connect("mongodb://localhost:27017/portfolio", { useNewUrlParser: true })

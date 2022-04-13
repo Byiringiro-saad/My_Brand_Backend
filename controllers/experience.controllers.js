@@ -1,4 +1,4 @@
-const Experience = require("../models/experience.model");
+import Experience from "../models/experience.model.js";
 
 exports.createExperience = async (req, res) => {
   const data = {

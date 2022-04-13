@@ -1,6 +1,6 @@
-const path = require("path");
-const fs = require("fs");
-const Blog = require("../models/blogs.model");
+import path from "path";
+import fs from "fs";
+import Blog from "../models/blogs.model.js";
 
 exports.createBlog = async (req, res) => {
   const data = {

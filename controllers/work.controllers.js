@@ -1,4 +1,4 @@
-const Work = require("../models/work.model");
+import Work from "../models/work.model.js";
 
 exports.createWork = async (req, res) => {
   const data = {

@@ -1,14 +1,14 @@
-const { Schema, model } = require("mongoose");
+import * as mongoose from "mongoose";
 
-const blogSchema = new Schema({
+const blogSchema = new mongoose.Schema({
   file: {
     type: String,
     requierd: true,
   },
-  // image: {
-  //   type: String,
-  //   required: true,
-  // },
+  image: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -30,5 +30,4 @@ const blogSchema = new Schema({
     required: true,
   },
 });
-
-module.exports = model("Blog", blogSchema);
+export default mongoose.model("Blog", blogSchema);

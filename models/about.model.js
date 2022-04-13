@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import * as mongoose from "mongoose";
 
-const aboutSchema = new Schema({
+const aboutSchema = new mongoose.Schema({
   file: {
     type: "string",
     required: true,
@@ -11,4 +11,4 @@ const aboutSchema = new Schema({
   },
 });
 
-module.exports = model("about", aboutSchema);
+export default mongoose.model("about", aboutSchema);

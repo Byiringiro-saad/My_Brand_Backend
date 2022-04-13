@@ -1,5 +1,5 @@
-const fs = require("fs");
-const About = require("../models/about.model");
+import fs from "fs";
+import About from "../models/about.model.js";
 
 exports.createAbout = async (req, res) => {
   const data = {

@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import * as mongoose from "mongoose";
 
-const experienceSchema = new Schema({
+const experienceSchema = new mongoose.Schema({
   company: {
     type: String,
     required: true,
@@ -31,4 +31,4 @@ const experienceSchema = new Schema({
   },
 });
 
-module.export = model("Experience", experienceSchema);
+export default mongoose.model("Experience", experienceSchema);

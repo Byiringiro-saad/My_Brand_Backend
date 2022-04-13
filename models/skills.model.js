@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import * as mongoose from "mongoose";
 
-const skillSchema = new Schema({
+const skillSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -20,4 +20,4 @@ const skillSchema = new Schema({
   },
 });
 
-module.exports = model("Skill", skillSchema);
+export default mongoose.model("Skill", skillSchema);

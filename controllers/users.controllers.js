@@ -1,9 +1,11 @@
-const Joi = require("joi");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv").config();
+import Joi from "joi";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-const Admin = require("../models/admin.model");
+import Admin from "../models/user.model.js";
+
+dotenv.config();
 
 exports.login = async (req, res) => {
   const data = {

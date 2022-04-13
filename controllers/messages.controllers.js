@@ -1,7 +1,7 @@
-const Joi = require("joi");
+import Joi from "joi";
 
-const Message = require("../models/messages.model");
-const sendMessage = require("../services/message.service");
+import Message from "../models/messages.model.js";
+import sendEmail from "../services/message.service.js";
 
 exports.createMessage = async (req, res) => {
   const data = {
@@ -87,7 +87,7 @@ exports.reply = async (req, res) => {
 
   try {
     await Message.findById(data.messageId).then(async (message) => {
-      await sendMessage(message.email, data.reply).then(async (response) => {
+      await sendEmail(message.email, data.reply).then(async (response) => {
         await Message.findByIdAndUpdate(data.messageId, {
           replied: true,
         }).then(() => {
