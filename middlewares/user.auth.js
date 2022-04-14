@@ -10,9 +10,10 @@ export default async (req, res, next) => {
 
       await User.findById(id).then((user) => {
         if (!user) {
-          throw new Error("admin not found");
+          throw new Error("user not found");
         } else {
-          if (user.role === "admin") {
+          if (user.role === "normal" || user.role === "admin") {
+            req.user = user;
             next();
           } else {
             throw new Error("user not allowed to perform this operation");
