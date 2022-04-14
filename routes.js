@@ -1,5 +1,6 @@
 import express from "express";
 import adminAuth from "./middlewares/admin.auth.js";
+import userAuth from "./middlewares/user.auth.js";
 
 import upload from "./services/image.service.js";
 
@@ -20,6 +21,8 @@ import {
   blogs,
   deleteBlog,
   updateBlog,
+  commentBlog,
+  likeBlog,
 } from "./controllers/blogs.controllers.js";
 
 import {
@@ -65,7 +68,9 @@ router.delete("/message/:id", adminAuth, deleteMessage);
 router.get("/blog", blogs);
 router.get("/blog/:id", blog);
 router.put("/blog/:id", adminAuth, updateBlog);
+router.put("/blog/like/:id", userAuth, likeBlog);
 router.delete("/blog/:id", adminAuth, deleteBlog);
+router.put("/blog/comment", userAuth, commentBlog);
 router.post("/blog/create", adminAuth, upload.single("picture"), createBlog);
 
 //works
