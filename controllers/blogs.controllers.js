@@ -149,6 +149,56 @@ export const likeBlog = async (req, res) => {
   };
 
   try {
+    await Blog.findById(data.id).then(async (blog) => {
+      if (blog.likes.includes(req.user._id)) {
+        await Blog.findByIdAndUpdate(data.id, {
+          $pull: { likes: `${req.user._id}` },
+        }).then(() => {
+          return res.json({
+            status: "success",
+            message: "unliked",
+          });
+        });
+      } else {
+        await Blog.findByIdAndUpdate(data.id, {
+          $push: { likes: `${req.user._id}` },
+        }).then(() => {
+          return res.json({
+            status: "success",
+            message: "liked",
+          });
+        });
+      }
+    });
+  } catch (error) {
+    return res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
+
+export const commentBlog = async (req, res) => {
+  const data = {
+    id: req.body.id,
+    comment: req.body.comment,
+  };
+
+  try {
+    await Blog.findByIdAndUpdate(data.id, {
+      $push: {
+        comments: {
+          user: req.user._id,
+          comment: data.comment,
+          addedAt: Date.now(),
+        },
+      },
+    }).then(() => {
+      return res.json({
+        status: "success",
+        message: "comment added",
+      });
+    });
   } catch (error) {
     return res.json({
       status: "error",
