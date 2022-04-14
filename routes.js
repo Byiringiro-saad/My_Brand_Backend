@@ -1,67 +1,97 @@
-const express = require("express");
+import express from "express";
+import adminAuth from "./middlewares/admin.auth.js";
+
+import upload from "./services/image.service.js";
+
 const router = express.Router();
 
-const upload = require("./services/image.service");
-
 //controllers
-const {
+import {
   createMessage,
   deleteMessage,
   message,
   messages,
   reply,
-} = require("./controllers/messages.controllers");
+} from "./controllers/messages.controllers.js";
 
-const {
+import {
   createBlog,
   blog,
   blogs,
   deleteBlog,
   updateBlog,
-} = require("./controllers/blogs.controllers");
+} from "./controllers/blogs.controllers.js";
 
-const {
+import {
   createWork,
   work,
   works,
   updateWork,
   deleteWork,
-} = require("./controllers/work.controllers");
+} from "./controllers/work.controllers.js";
 
-const {
+import {
   createExperience,
   experience,
   experiences,
   updateExperience,
   deleteExperience,
-} = require("./controllers/experience.controllers");
+} from "./controllers/experience.controllers.js";
+
+import {
+  createSkill,
+  deleteSkill,
+  skills,
+  updateSkill,
+} from "./controllers/skills.controllers.js";
+
+import {
+  createAbout,
+  about,
+  updateAbout,
+  updateImage,
+} from "./controllers/about.controllers.js";
+
+import {} from "./controllers/users.controllers.js";
 
 //messages
-router.get("/message", messages);
-router.get("/message/:id", message);
-router.post("/message/reply", reply);
-router.post("/message/add", createMessage);
-router.delete("/message/:id", deleteMessage);
+router.get("/message", adminAuth, messages);
+router.get("/message/:id", adminAuth, message);
+router.post("/message/reply", adminAuth, reply);
+router.post("/message/add", adminAuth, createMessage);
+router.delete("/message/:id", adminAuth, deleteMessage);
 
 //blogs
 router.get("/blog", blogs);
 router.get("/blog/:id", blog);
-router.put("/blog/:id", updateBlog);
-router.delete("/blog/:id", deleteBlog);
-router.post("/blog/create", upload.single("picture"), createBlog);
+router.put("/blog/:id", adminAuth, updateBlog);
+router.delete("/blog/:id", adminAuth, deleteBlog);
+router.post("/blog/create", adminAuth, upload.single("picture"), createBlog);
 
 //works
 router.get("/work", works);
-router.get("/work/:id", work);
-router.put("/work/:id", updateWork);
-router.delete("/work/:id", deleteWork);
-router.post("/work/create", upload.single("picture"), createWork);
+router.get("/work/:id", adminAuth, work);
+router.put("/work/:id", adminAuth, updateWork);
+router.delete("/work/:id", adminAuth, deleteWork);
+router.post("/work/create", adminAuth, upload.single("picture"), createWork);
 
 //experiences
 router.get("/experience", experiences);
-router.get("/experience/:id", experience);
-router.put("/experience/:id", updateExperience);
-router.delete("/experience/:id", deleteExperience);
-router.post("/experience/create", createExperience);
+router.get("/experience/:id", adminAuth, experience);
+router.put("/experience/:id", adminAuth, updateExperience);
+router.delete("/experience/:id", adminAuth, deleteExperience);
+router.post("/experience/create", adminAuth, createExperience);
 
-module.exports = router;
+//skills
+router.get("/skill", skills);
+router.put("/skill/:id", adminAuth, updateSkill);
+router.delete("/skill:id", adminAuth, deleteSkill);
+router.post("/skill/create", adminAuth, createSkill);
+
+//about
+router.get("/about", about);
+router.post("/about", adminAuth, createAbout);
+router.put("/about/image/:id", adminAuth, updateImage);
+router.put("/about/content/:id", adminAuth, updateAbout);
+
+export default router;

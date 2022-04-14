@@ -1,6 +1,8 @@
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
-const dotenv = require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const transporter = nodemailer.createTransport({
   port: 465,
@@ -31,4 +33,4 @@ const sendEmail = (email, reply) => {
   });
 };
 
-module.exports = sendEmail;
+export default sendEmail;

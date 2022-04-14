@@ -1,17 +1,19 @@
-const multer = require("multer");
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
+import multer from "multer";
+import { v2 } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 
-const dotenv = require("dotenv").config();
+import dotenv from "dotenv";
 
-cloudinary.config({
+dotenv.config();
+
+v2.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary: v2,
   folder: "portfolio",
   allowedFormats: ["jpg", "png", "jpeg"],
   transformation: [{ width: 500, height: 500, crop: "limit" }],
@@ -19,4 +21,4 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
-module.exports = upload;
+export default upload;

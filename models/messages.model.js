@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import mongoose from "mongoose";
 
-const messageSchema = new Schema({
+const messageSchema = mongoose.Schema({
   sender: {
     type: String,
     required: true,
@@ -23,4 +23,4 @@ const messageSchema = new Schema({
   },
 });
 
-module.exports = model("Message", messageSchema);
+export default mongoose.model("Message", messageSchema);

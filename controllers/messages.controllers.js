@@ -1,9 +1,9 @@
-const Joi = require("joi");
+import Joi from "joi";
 
-const Message = require("../models/messages.model");
-const sendMessage = require("../services/message.service");
+import Message from "../models/messages.model.js";
+import sendEmail from "../services/message.service.js";
 
-exports.createMessage = async (req, res) => {
+export const createMessage = async (req, res) => {
   const data = {
     names: req.body.names,
     email: req.body.email,
@@ -38,7 +38,7 @@ exports.createMessage = async (req, res) => {
   }
 };
 
-exports.deleteMessage = async (req, res) => {
+export const deleteMessage = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -58,7 +58,7 @@ exports.deleteMessage = async (req, res) => {
   }
 };
 
-exports.message = async (req, res) => {
+export const message = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -79,7 +79,7 @@ exports.message = async (req, res) => {
   }
 };
 
-exports.reply = async (req, res) => {
+export const reply = async (req, res) => {
   const data = {
     reply: req.body.reply,
     messageId: req.body.messageId,
@@ -87,7 +87,7 @@ exports.reply = async (req, res) => {
 
   try {
     await Message.findById(data.messageId).then(async (message) => {
-      await sendMessage(message.email, data.reply).then(async (response) => {
+      await sendEmail(message.email, data.reply).then(async (response) => {
         await Message.findByIdAndUpdate(data.messageId, {
           replied: true,
         }).then(() => {
@@ -106,7 +106,7 @@ exports.reply = async (req, res) => {
   }
 };
 
-exports.messages = async (req, res) => {
+export const messages = async (req, res) => {
   try {
     await Message.find({}).then((response) => {
       return res.json({
