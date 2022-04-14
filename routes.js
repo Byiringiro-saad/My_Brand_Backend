@@ -52,7 +52,7 @@ import {
   updateImage,
 } from "./controllers/about.controllers.js";
 
-import {} from "./controllers/users.controllers.js";
+import { login, signup } from "./controllers/users.controllers.js";
 
 //messages
 router.get("/message", adminAuth, messages);
@@ -93,5 +93,9 @@ router.get("/about", about);
 router.post("/about", adminAuth, createAbout);
 router.put("/about/image/:id", adminAuth, updateImage);
 router.put("/about/content/:id", adminAuth, updateAbout);
+
+//user
+router.get("/user/login", login);
+router.get("/user/signup", signup);
 
 export default router;
