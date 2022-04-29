@@ -180,7 +180,7 @@ export const likeBlog = async (req, res) => {
 
 export const commentBlog = async (req, res) => {
   const data = {
-    id: req.body.id,
+    id: req.params.id,
     comment: req.body.comment,
   };
 

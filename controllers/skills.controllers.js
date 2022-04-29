@@ -30,7 +30,7 @@ export const createSkill = async (req, res) => {
 
 export const skills = async (req, res) => {
   try {
-    await Skill.find({}).then((dara) => {
+    await Skill.find({}).then((data) => {
       return res.json({
         status: "success",
         message: "All skills",
