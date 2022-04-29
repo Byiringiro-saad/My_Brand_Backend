@@ -14,14 +14,18 @@ const blogSchema = mongoose.Schema({
     required: true,
   },
   likes: {
-    type: Number,
+    type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
     default: 0,
   },
   comments: {
     type: [
       {
-        name: String,
+        user: {
+          type: mongoose.Types.ObjectId,
+          ref: "User",
+        },
         comment: String,
+        addedAt: Date,
       },
     ],
   },
