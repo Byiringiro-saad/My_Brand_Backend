@@ -66,10 +66,8 @@ export const signup = async (req, res) => {
     if (error) {
       throw new Error(error.message);
     } else {
-      bcrypt.hash(
-        data.password,
-        `${process.env.SALT}`,
-        async (err, hashedPassword) => {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(data.password, salt, async (err, hashedPassword) => {
           if (err) {
             throw new Error(err.message);
           } else {
@@ -87,8 +85,8 @@ export const signup = async (req, res) => {
               });
             });
           }
-        }
-      );
+        });
+      });
     }
   } catch (error) {
     return res.status(400).json({

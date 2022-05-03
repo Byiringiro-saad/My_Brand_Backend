@@ -1,43 +1,52 @@
 import path from "path";
 import fs from "fs";
+import { v2 } from "cloudinary";
+
 import Blog from "../models/blogs.model.js";
 
 export const createBlog = async (req, res) => {
   const data = {
-    image: req.file.path,
     title: req.body.title,
   };
 
-  try {
-    if (!req.files) {
-      res.send({
-        status: false,
-        message: "No file uploaded",
-      });
-    } else {
-      let file = req.files.blog;
-      file.mv(path.join("./blogs", file.name));
+  const base64url = canvas;
+  // const base64imagestring =
 
-      const blog = new Blog({
-        file: file.name,
-        image: data.image,
-        title: data.title,
-        createdAt: Date.now(),
-      });
+  const response = await v2.uploader.upload(base64imagestring);
+  console.log(response);
 
-      blog.save().then((response) => {
-        return res.json({
-          status: "success",
-          message: "blog created",
-        });
-      });
-    }
-  } catch (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
+  // try {
+  //   if (!req.files) {
+  //     res.send({
+  //       status: false,
+  //       message: "No file uploaded",
+  //     });
+  //   } else {
+  //     let file = req.files.blog;
+  //     file.mv(path.join("./blogs", file.name));
+
+  //     const blog = new Blog({
+  //       file: file.name,
+  //       image: data.image,
+  //       title: data.title,
+  //       createdAt: Date.now(),
+  //     });
+
+  //     blog.save().then((response) => {
+  //       return res.json({
+  //         status: "success",
+  //         message: "blog created",
+  //       });
+  //     });
+  //   }
+  // } catch (error) {
+  //   return res.json({
+  //     status: "error",
+  //     message: error.message,
+  //   });
+  // }
+
+  // console.log(req.files);
 };
 
 export const blog = async (req, res) => {
