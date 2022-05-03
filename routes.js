@@ -84,6 +84,10 @@ router.delete("/message/:id", adminAuth, deleteMessage);
  *            type: boolean
  *          createAt:
  *            type: Date
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
  */
 
 /**
@@ -100,6 +104,10 @@ router.delete("/message/:id", adminAuth, deleteMessage);
  *    get:
  *      summary: get all messages
  *      tags: [Messages]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      responses:
  *        "200":
  *          description: all messages
@@ -111,6 +119,10 @@ router.delete("/message/:id", adminAuth, deleteMessage);
  *    get:
  *      summary: get a specific message
  *      tags: [Messages]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -127,6 +139,10 @@ router.delete("/message/:id", adminAuth, deleteMessage);
  *                $ref: "#/components/schemas/Message"
  *    delete:
  *      summary: delete a message
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      tags: [Messages]
  *      parameters:
  *        - in: path
@@ -142,6 +158,10 @@ router.delete("/message/:id", adminAuth, deleteMessage);
  *    post:
  *      summary: reply to a message
  *      tags: [Messages]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      requestBody:
  *        required: true
  *        content:
@@ -186,9 +206,9 @@ router.delete("/message/:id", adminAuth, deleteMessage);
 router.get("/blog", blogs);
 router.get("/blog/:id", blog);
 router.put("/blog/:id", adminAuth, updateBlog);
-router.put("/blog/like/:id", userAuth, likeBlog);
+router.put("/blog/:id/like", userAuth, likeBlog);
 router.delete("/blog/:id", adminAuth, deleteBlog);
-router.put("/blog/comment/:id", userAuth, commentBlog);
+router.put("/blog/:id/comment", userAuth, commentBlog);
 router.post("/blog/create", adminAuth, createBlog);
 
 //blogs documentation
@@ -259,7 +279,7 @@ router.post("/blog/create", adminAuth, createBlog);
  *        - in: path
  *          name: id
  *          schema:
- *            type: interger
+ *            type: string
  *          required: true
  *          description: blog id
  *      responses:
@@ -272,11 +292,15 @@ router.post("/blog/create", adminAuth, createBlog);
  *    put:
  *      summary: update a specific blog
  *      tags: [Blogs]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
- *            type: interger
+ *            type: string
  *          required: true
  *          description: blog id
  *      requestBody:
@@ -298,39 +322,51 @@ router.post("/blog/create", adminAuth, createBlog);
  *    delete:
  *      summary: delete a blog
  *      tags: [Blogs]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
- *            type: interger
+ *            type: string
  *          required: true
  *          description: blog id
  *      responses:
  *        "200":
  *          description: blog deleted
- *  /blog/like/{id}:
+ *  /blog/{id}/like:
  *    put:
  *      summary: like a blog
  *      tags: [Blogs]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
- *            type: interger
+ *            type: string
  *          required: true
  *          description: blog id
  *      responses:
  *        "200":
  *          description: blog liked
- *  /blog/comment:
+ *  /blog/{id}/comment:
  *    put:
  *      summary: commment on a blog
  *      tags: [Blogs]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
- *            type: interger
+ *            type: string
  *          required: true
  *          description: blog id
  *      requestBody:
@@ -411,6 +447,10 @@ router.post("/work/create", adminAuth, createWork);
  *              type: string
  *          createdAt:
  *            type: Date
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
  */
 
 /**
@@ -438,6 +478,10 @@ router.post("/work/create", adminAuth, createWork);
  *    get:
  *      summary: get a specific work
  *      tags: [Works]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -455,6 +499,10 @@ router.post("/work/create", adminAuth, createWork);
  *    put:
  *      summary: update a specific work
  *      tags: [Works]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -489,6 +537,10 @@ router.post("/work/create", adminAuth, createWork);
  *    delete:
  *      summary: delete a work
  *      tags: [Works]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -503,6 +555,10 @@ router.post("/work/create", adminAuth, createWork);
  *    post:
  *      summary: create a work
  *      tags: [Works]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      requestBody:
  *        required: true
  *        content:
@@ -560,6 +616,10 @@ router.post("/experience/create", adminAuth, createExperience);
  *            type: string
  *          createdAt:
  *            type: Date
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
  */
 
 /**
@@ -587,6 +647,10 @@ router.post("/experience/create", adminAuth, createExperience);
  *    get:
  *      summary: get a specific experience
  *      tags: [Experiences]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -604,6 +668,10 @@ router.post("/experience/create", adminAuth, createExperience);
  *    put:
  *      summary: update a specific experince
  *      tags: [Experiences]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -640,6 +708,10 @@ router.post("/experience/create", adminAuth, createExperience);
  *    delete:
  *      summary: delete an experience
  *      tags: [Experiences]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -654,6 +726,10 @@ router.post("/experience/create", adminAuth, createExperience);
  *    post:
  *      summary: create an experience
  *      tags: [Experiences]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      requestBody:
  *        required: true
  *        content:
@@ -711,6 +787,10 @@ router.post("/skill/create", adminAuth, createSkill);
  *                  type: string
  *                percent:
  *                  type: string
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
  */
 
 /**
@@ -738,6 +818,10 @@ router.post("/skill/create", adminAuth, createSkill);
  *    put:
  *      summary: update a specific skill
  *      tags: [Skills]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -775,6 +859,10 @@ router.post("/skill/create", adminAuth, createSkill);
  *    delete:
  *      summary: delete a skill
  *      tags: [Skills]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -789,6 +877,10 @@ router.post("/skill/create", adminAuth, createSkill);
  *    post:
  *      summary: create a skill
  *      tags: [Skills]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      requestBody:
  *        required: true
  *        content:
@@ -821,8 +913,8 @@ router.post("/skill/create", adminAuth, createSkill);
 //about
 router.get("/about", about);
 router.post("/about/create", adminAuth, createAbout);
-router.put("/about/image/:id", adminAuth, updateImage);
-router.put("/about/content/:id", adminAuth, updateAbout);
+router.put("/about/:id/image", adminAuth, updateImage);
+router.put("/about/:id/content", adminAuth, updateAbout);
 
 //about documentation
 /**
@@ -838,6 +930,10 @@ router.put("/about/content/:id", adminAuth, updateAbout);
  *            type: string
  *          image:
  *            type: string
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
  */
 
 /**
@@ -861,10 +957,14 @@ router.put("/about/content/:id", adminAuth, updateAbout);
  *            application/json:
  *              schema:
  *                $ref: "#/components/schemas/About"
- *  /about/content/{id}:
+ *  /about/{id}/content:
  *    put:
  *      summary: update a content of the about
  *      tags: [About]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -879,10 +979,14 @@ router.put("/about/content/:id", adminAuth, updateAbout);
  *            application/json:
  *              schema:
  *                $ref: "#/components/schemas/About"
- *  /about/image/{id}:
+ *  /about/{id}/image:
  *    put:
  *      summary: update a image of the about
  *      tags: [About]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      parameters:
  *        - in: path
  *          name: id
@@ -901,6 +1005,10 @@ router.put("/about/content/:id", adminAuth, updateAbout);
  *    post:
  *      summary: create about me
  *      tags: [About]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      responses:
  *        "200":
  *          description: about created
