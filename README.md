@@ -6,8 +6,10 @@ Backend for my portfolio🪄
 
 ![alt text](https://github.com/Byiringiro-saad/My_Brand_backend/blob/main/images/Splash.jpg?raw=true)
 
-### Test badge
+### Test badges
 [![CircleCI](https://circleci.com/gh/Byiringiro-saad/My_Brand_Backend.svg?style=shield)](https://circleci.com/gh/circleci-docs)
+[![Coverage Status](https://coveralls.io/repos/github/Byiringiro-saad/My_Brand_Backend/badge.svg?branch=main)](https://coveralls.io/github/Byiringiro-saad/My_Brand_Backend?branch=main)
+
 
 ### Installation
 
