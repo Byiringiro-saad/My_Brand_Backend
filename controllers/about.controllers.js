@@ -1,7 +1,7 @@
-import fs from "fs";
-import About from "../models/about.model.js";
+const fs = require("fs");
+const About = require("../models/about.model.js");
 
-export const createAbout = async (req, res) => {
+exports.createAbout = async (req, res) => {
   const data = {
     image: req.file.path,
   };
@@ -36,7 +36,7 @@ export const createAbout = async (req, res) => {
   }
 };
 
-export const about = async (req, res) => {
+exports.about = async (req, res) => {
   try {
     await About.find({}).then((abouts) => {
       const filename = abouts[0].file;
@@ -65,7 +65,7 @@ export const about = async (req, res) => {
   }
 };
 
-export const updateAbout = async (req, res) => {
+exports.updateAbout = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -94,7 +94,7 @@ export const updateAbout = async (req, res) => {
   }
 };
 
-export const updateImage = async (req, res) => {
+exports.updateImage = async (req, res) => {
   const data = {
     id: req.params.id,
     image: req.file.path,

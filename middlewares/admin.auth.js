@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import User from "../models/user.model.js";
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.model.js");
 
-export default async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     if (!req.headers["authorization"]) {
       throw new Error("no athorisation provided");

@@ -1,6 +1,6 @@
-import nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -33,4 +33,4 @@ const sendEmail = (email, reply) => {
   });
 };
 
-export default sendEmail;
+module.exports = sendEmail;

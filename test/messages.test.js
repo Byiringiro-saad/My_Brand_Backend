@@ -1,6 +1,10 @@
-import chai from "chai";
-import chaiHttp from "chai-http";
-import server from "../server.js";
+// import chai from "chai";
+// import chaiHttp from "chai-http";
+// import server from "../server.js";
+
+const chai = require("chai");
+const chaiHttp = require("chai-http");
+const server = require("../server");
 
 //Assertion style
 chai.should();
@@ -175,7 +179,7 @@ describe("Test message APIs", () => {
           message: "just testing messages",
         })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(201);
           res.body.should.have.property("message");
           res.body.message.should.equal("message sent");
           done();

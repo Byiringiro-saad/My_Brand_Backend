@@ -1,13 +1,13 @@
-import Joi from "joi";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+const Joi = require("joi");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 
-import User from "../models/user.model.js";
+const User = require("../models/user.model.js");
 
 dotenv.config();
 
-export const login = async (req, res) => {
+exports.login = async (req, res) => {
   const data = {
     email: req.body.email,
     password: req.body.password,
@@ -52,7 +52,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const signup = async (req, res) => {
+exports.signup = async (req, res) => {
   const data = {
     name: req.body.name,
     email: req.body.email,

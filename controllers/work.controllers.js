@@ -1,6 +1,6 @@
-import Work from "../models/work.model.js";
+const Work = require("../models/work.model.js");
 
-export const createWork = async (req, res) => {
+exports.createWork = async (req, res) => {
   const data = {
     image: req.file.path,
     title: req.body.title,
@@ -33,7 +33,7 @@ export const createWork = async (req, res) => {
   }
 };
 
-export const work = async (req, res) => {
+exports.work = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -54,7 +54,7 @@ export const work = async (req, res) => {
   }
 };
 
-export const works = async (req, res) => {
+exports.works = async (req, res) => {
   try {
     await Work.find({}).then(async (works) => {
       return res.json({
@@ -71,7 +71,7 @@ export const works = async (req, res) => {
   }
 };
 
-export const updateWork = async (req, res) => {
+exports.updateWork = async (req, res) => {
   const data = {
     id: req.params.id,
     image: req.file.path,
@@ -102,7 +102,7 @@ export const updateWork = async (req, res) => {
   }
 };
 
-export const deleteWork = async (req, res) => {
+exports.deleteWork = async (req, res) => {
   const data = {
     id: req.params.id,
   };

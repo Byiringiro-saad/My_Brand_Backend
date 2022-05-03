@@ -1,6 +1,6 @@
-import Experience from "../models/experience.model.js";
+const Experience = require("../models/experience.model.js");
 
-export const createExperience = async (req, res) => {
+exports.createExperience = async (req, res) => {
   const data = {
     company: req.body.company,
     role: req.body.role,
@@ -35,7 +35,7 @@ export const createExperience = async (req, res) => {
   }
 };
 
-export const experience = async (req, res) => {
+exports.experience = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -56,7 +56,7 @@ export const experience = async (req, res) => {
   }
 };
 
-export const experiences = async (req, res) => {
+exports.experiences = async (req, res) => {
   try {
     Experience.find({}).then((experiences) => {
       return res.json({
@@ -73,7 +73,7 @@ export const experiences = async (req, res) => {
   }
 };
 
-export const updateExperience = async (req, res) => {
+exports.updateExperience = async (req, res) => {
   const data = {
     id: req.params.id,
     company: req.body.company,
@@ -106,7 +106,7 @@ export const updateExperience = async (req, res) => {
   }
 };
 
-export const deleteExperience = async (req, res) => {
+exports.deleteExperience = async (req, res) => {
   const data = {
     id: req.params.id,
   };

@@ -1,6 +1,6 @@
-import Skill from "../models/skills.model.js";
+const Skill = require("../models/skills.model.js");
 
-export const createSkill = async (req, res) => {
+exports.createSkill = async (req, res) => {
   const data = {
     title: req.body.title,
     banner: req.body.banner,
@@ -28,7 +28,7 @@ export const createSkill = async (req, res) => {
   }
 };
 
-export const skills = async (req, res) => {
+exports.skills = async (req, res) => {
   try {
     await Skill.find({}).then((data) => {
       return res.json({
@@ -45,7 +45,7 @@ export const skills = async (req, res) => {
   }
 };
 
-export const updateSkill = async (req, res) => {
+exports.updateSkill = async (req, res) => {
   const data = {
     id: req.params.id,
     title: req.body.title,
@@ -72,7 +72,7 @@ export const updateSkill = async (req, res) => {
   }
 };
 
-export const deleteSkill = async (req, res) => {
+exports.deleteSkill = async (req, res) => {
   const data = {
     id: req.params.id,
   };

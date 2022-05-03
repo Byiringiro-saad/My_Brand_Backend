@@ -1,10 +1,10 @@
-import path from "path";
-import fs from "fs";
-import { v2 } from "cloudinary";
+const path = require("path");
+const fs = require("fs");
+const { v2 } = require("cloudinary");
 
-import Blog from "../models/blogs.model.js";
+const Blog = require("../models/blogs.model.js");
 
-export const createBlog = async (req, res) => {
+exports.createBlog = async (req, res) => {
   const data = {
     title: req.body.title,
   };
@@ -41,7 +41,7 @@ export const createBlog = async (req, res) => {
   }
 };
 
-export const blog = async (req, res) => {
+exports.blog = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -61,7 +61,7 @@ export const blog = async (req, res) => {
   }
 };
 
-export const blogs = async (req, res) => {
+exports.blogs = async (req, res) => {
   try {
     await Blog.find({}).then((blogs) => {
       return res.json({
@@ -78,7 +78,7 @@ export const blogs = async (req, res) => {
   }
 };
 
-export const updateBlog = async (req, res) => {
+exports.updateBlog = async (req, res) => {
   const data = {
     title: req.body.title,
     id: req.params.id,
@@ -119,7 +119,7 @@ export const updateBlog = async (req, res) => {
   }
 };
 
-export const deleteBlog = async (req, res) => {
+exports.deleteBlog = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -144,7 +144,7 @@ export const deleteBlog = async (req, res) => {
   }
 };
 
-export const likeBlog = async (req, res) => {
+exports.likeBlog = async (req, res) => {
   const data = {
     id: req.params.id,
   };
@@ -179,7 +179,7 @@ export const likeBlog = async (req, res) => {
   }
 };
 
-export const commentBlog = async (req, res) => {
+exports.commentBlog = async (req, res) => {
   const data = {
     id: req.params.id,
     comment: req.body.comment,
