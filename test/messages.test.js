@@ -130,58 +130,58 @@ describe("Test message APIs", () => {
    * Testing send reply api
    */
 
-  describe("POST /message/reply", () => {
-    it("It should send a reply to a message", () => {
-      chai
-        .request(server)
-        .post("/api/user/signup")
-        .send({
-          name: "testing",
-          email: "test@example.com",
-          password: "test@123",
-          role: "admin",
-        })
-        .end((err, res) => {
-          res.should.have.status(200);
+  // describe("POST /message/reply", () => {
+  //   it("It should send a reply to a message", () => {
+  //     chai
+  //       .request(server)
+  //       .post("/api/user/signup")
+  //       .send({
+  //         name: "testing",
+  //         email: "test@example.com",
+  //         password: "test@123",
+  //         role: "admin",
+  //       })
+  //       .end((err, res) => {
+  //         res.should.have.status(200);
 
-          chai
-            .request(server)
-            .post("/api/user/login")
-            .send({
-              email: "test@example.com",
-              password: "test@123",
-            })
-            .end((err, res) => {
-              res.body.should.have.property("data");
-              let token = res.body.data;
+  //         chai
+  //           .request(server)
+  //           .post("/api/user/login")
+  //           .send({
+  //             email: "test@example.com",
+  //             password: "test@123",
+  //           })
+  //           .end((err, res) => {
+  //             res.body.should.have.property("data");
+  //             let token = res.body.data;
 
-              chai
-                .request(server)
-                .get("/api/message")
-                .set("authorization", "Bearer " + token)
-                .end((err, res) => {
-                  res.should.have.status(200);
-                  res.body.should.have.property("data");
+  //             chai
+  //               .request(server)
+  //               .get("/api/message")
+  //               .set("authorization", "Bearer " + token)
+  //               .end((err, res) => {
+  //                 res.should.have.status(200);
+  //                 res.body.should.have.property("data");
 
-                  chai
-                    .request(server)
-                    .post("/api/message/reply")
-                    .set("authorization", "Bearer " + token)
-                    .send({
-                      reply: "Hello there, i am just testing my apis",
-                      messageId: res.body.data[0]._id,
-                    })
-                    .end((err, res) => {
-                      res.should.have.status(200);
-                      res.body.should.have.property("message");
-                      res.body.message.should.equal("message replied");
-                      done();
-                    });
-                });
-            });
-        });
-    });
-  });
+  //                 chai
+  //                   .request(server)
+  //                   .post("/api/message/reply")
+  //                   .set("authorization", "Bearer " + token)
+  //                   .send({
+  //                     reply: "Hello there, i am just testing my apis",
+  //                     messageId: res.body.data[0]._id,
+  //                   })
+  //                   .end((err, res) => {
+  //                     res.should.have.status(200);
+  //                     res.body.should.have.property("message");
+  //                     res.body.message.should.equal("message replied");
+  //                     done();
+  //                   });
+  //               });
+  //           });
+  //       });
+  //   });
+  // });
 
   /**
    * Testing delete message api
