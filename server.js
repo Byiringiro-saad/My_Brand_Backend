@@ -12,20 +12,6 @@ const routes = require("./routes.js");
 require("./services/image.service.js");
 require("./services/db.service");
 
-const app = express();
-
-const addHeaders = (req, res, next) => {
-  req.headers["content-type"] = "application/json";
-  next();
-};
-
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("dev"));
-app.use(fileUpload({ useTempFiles: true }));
-app.use("/api", addHeaders, routes);
-
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -50,6 +36,21 @@ const options = {
 };
 
 const specs = swaggerJSDoc(options);
+
+const app = express();
+
+app.use(cors());
+app.use(morgan("dev"));
+app.use(bodyParser.json());
+app.use(fileUpload({ useTempFiles: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const addHeaders = (req, res, next) => {
+  req.headers["content-type"] = "application/json";
+  next();
+};
+
+app.use("/api", addHeaders, routes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.listen(5000, () => {

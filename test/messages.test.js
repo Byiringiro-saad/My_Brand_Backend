@@ -1,13 +1,9 @@
-// import chai from "chai";
-// import chaiHttp from "chai-http";
-// import server from "../server.js";
+process.env.NODE_ENV = "test";
 
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const server = require("../server");
-
-//Assertion style
-chai.should();
+const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -44,7 +40,7 @@ describe("Test message APIs", () => {
               chai
                 .request(server)
                 .get("/api/message")
-                .set("auth", token)
+                .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
@@ -60,7 +56,7 @@ describe("Test message APIs", () => {
    */
 
   describe("GET /message/{id}", () => {
-    it("It should get one message", () => {
+    it("It should get one message", (done) => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -87,7 +83,7 @@ describe("Test message APIs", () => {
               chai
                 .request(server)
                 .get("/api/message")
-                .set("auth", token)
+                .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
@@ -95,7 +91,7 @@ describe("Test message APIs", () => {
                   chai
                     .request(server)
                     .get(`/api/message/${res.body.data[0]._id}`)
-                    .set("auth", token)
+                    .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
                       res.body.should.have.property("data");
@@ -139,7 +135,7 @@ describe("Test message APIs", () => {
               chai
                 .request(server)
                 .get("/api/message")
-                .set("auth", token)
+                .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
@@ -147,7 +143,7 @@ describe("Test message APIs", () => {
                   chai
                     .request(server)
                     .get("/api/message/reply")
-                    .set("auth", token)
+                    .set("authorization", "Bearer " + token)
                     .send({
                       reply: "Hello there, i am just testing my apis",
                       messageId: res.body.data[0]._id,
@@ -168,7 +164,7 @@ describe("Test message APIs", () => {
    * Testing send message api
    */
 
-  describe("POST /message/reply", () => {
+  describe("POST /message/add", () => {
     it("It should send a message", (done) => {
       chai
         .request(server)
@@ -219,7 +215,7 @@ describe("Test message APIs", () => {
               chai
                 .request(server)
                 .get("/api/message")
-                .set("auth", res.body.data)
+                .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
@@ -227,7 +223,7 @@ describe("Test message APIs", () => {
                   chai
                     .request(server)
                     .delete(`/api/message/${res.body.data[0]._id}`)
-                    .set("auth", token)
+                    .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
