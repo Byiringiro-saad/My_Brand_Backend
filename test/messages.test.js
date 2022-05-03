@@ -28,7 +28,7 @@ describe("Test message APIs", () => {
           role: "admin",
         })
         .end((err, res) => {
-          res.should.have.status(201);
+          res.should.have.status(200);
 
           chai
             .request(server)
@@ -71,7 +71,7 @@ describe("Test message APIs", () => {
           role: "admin",
         })
         .end((err, res) => {
-          res.should.have.status(201);
+          res.should.have.status(200);
 
           chai
             .request(server)
@@ -123,7 +123,7 @@ describe("Test message APIs", () => {
           role: "admin",
         })
         .end((err, res) => {
-          res.should.have.status(201);
+          res.should.have.status(200);
 
           chai
             .request(server)
@@ -179,7 +179,7 @@ describe("Test message APIs", () => {
           message: "just testing messages",
         })
         .end((err, res) => {
-          res.should.have.status(201);
+          res.should.have.status(200);
           res.body.should.have.property("message");
           res.body.message.should.equal("message sent");
           done();
@@ -203,7 +203,7 @@ describe("Test message APIs", () => {
           role: "admin",
         })
         .end((err, res) => {
-          res.should.have.status(201);
+          res.should.have.status(200);
 
           chai
             .request(server)
@@ -219,7 +219,7 @@ describe("Test message APIs", () => {
               chai
                 .request(server)
                 .get("/api/message")
-                .set("auth", token)
+                .set("auth", res.body.data)
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
