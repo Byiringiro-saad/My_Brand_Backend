@@ -9,44 +9,36 @@ export const createBlog = async (req, res) => {
     title: req.body.title,
   };
 
-  const base64url = canvas;
-  // const base64imagestring =
+  try {
+    const response = await v2.uploader.upload(req.files.picture.tempFilePath);
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: "No file uploaded",
+      });
+    } else {
+      let file = req.files.blog;
+      file.mv(path.join("./blogs", file.name));
+      const blog = new Blog({
+        file: file.name,
+        image: response.secure_url,
+        title: data.title,
+        createdAt: Date.now(),
+      });
 
-  const response = await v2.uploader.upload(base64imagestring);
-  console.log(response);
-
-  // try {
-  //   if (!req.files) {
-  //     res.send({
-  //       status: false,
-  //       message: "No file uploaded",
-  //     });
-  //   } else {
-  //     let file = req.files.blog;
-  //     file.mv(path.join("./blogs", file.name));
-
-  //     const blog = new Blog({
-  //       file: file.name,
-  //       image: data.image,
-  //       title: data.title,
-  //       createdAt: Date.now(),
-  //     });
-
-  //     blog.save().then((response) => {
-  //       return res.json({
-  //         status: "success",
-  //         message: "blog created",
-  //       });
-  //     });
-  //   }
-  // } catch (error) {
-  //   return res.json({
-  //     status: "error",
-  //     message: error.message,
-  //   });
-  // }
-
-  // console.log(req.files);
+      blog.save().then((response) => {
+        return res.json({
+          status: "success",
+          message: "blog created",
+        });
+      });
+    }
+  } catch (error) {
+    return res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
 };
 
 export const blog = async (req, res) => {

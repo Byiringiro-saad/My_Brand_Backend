@@ -2,7 +2,7 @@ import express from "express";
 import adminAuth from "./middlewares/admin.auth.js";
 import userAuth from "./middlewares/user.auth.js";
 
-import upload from "./services/image.service.js";
+// import upload from "./services/image.service.js";
 
 const router = express.Router();
 
@@ -189,7 +189,7 @@ router.put("/blog/:id", adminAuth, updateBlog);
 router.put("/blog/like/:id", userAuth, likeBlog);
 router.delete("/blog/:id", adminAuth, deleteBlog);
 router.put("/blog/comment/:id", userAuth, commentBlog);
-router.post("/blog/create", adminAuth, upload.single("picture"), createBlog);
+router.post("/blog/create", adminAuth, createBlog);
 
 //blogs documentation
 /**
@@ -224,6 +224,10 @@ router.post("/blog/create", adminAuth, upload.single("picture"), createBlog);
  *                  type: Date
  *          createdAt:
  *            type: Date
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
  */
 
 /**
@@ -345,15 +349,28 @@ router.post("/blog/create", adminAuth, upload.single("picture"), createBlog);
  *    post:
  *      summary: create a blog
  *      tags: [Blogs]
+ *      security:
+ *        - BearerAuth:
+ *            - read
+ *            - write
  *      requestBody:
  *        required: true
  *        content:
- *          application/json:
+ *          multipart/form-data:
  *            schema:
  *              type: object
  *              properties:
  *                title:
  *                  type: string
+ *                  required: true
+ *                blog:
+ *                  type: string
+ *                  format: binary
+ *                  required: true
+ *                picture:
+ *                  type: string
+ *                  format: binary
+ *                  required: true
  *      responses:
  *        "200":
  *          description: blog created
@@ -368,7 +385,7 @@ router.get("/work", works);
 router.get("/work/:id", adminAuth, work);
 router.put("/work/:id", adminAuth, updateWork);
 router.delete("/work/:id", adminAuth, deleteWork);
-router.post("/work/create", adminAuth, upload.single("picture"), createWork);
+router.post("/work/create", adminAuth, createWork);
 
 //works documentation
 /**

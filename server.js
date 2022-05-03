@@ -12,19 +12,22 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 const app = express();
 
+import "./services/image.service.js";
+
 mongoose
   .connect("mongodb://localhost:27017/portfolio", { useNewUrlParser: true })
   .then(() => {
-    app.use(
-      fileUpload({
-        createParentPath: true,
-      })
-    );
+    const addHeaders = (req, res, next) => {
+      req.headers["content-type"] = "application/json";
+      next();
+    };
+
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(morgan("dev"));
-    app.use("/api", routes);
+    app.use(fileUpload({ useTempFiles: true }));
+    app.use("/api", addHeaders, routes);
 
     const options = {
       definition: {
