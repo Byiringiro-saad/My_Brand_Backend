@@ -9,11 +9,34 @@ chai.use(chaiHttp);
 
 describe("Test message APIs", () => {
   /**
+   * Testing send message api
+   */
+
+  describe("POST /message/add", () => {
+    it("It should send a message", (done) => {
+      chai
+        .request(server)
+        .post("/api/message/add")
+        .send({
+          names: "testing user",
+          email: "testing@example.com",
+          message: "just testing messages",
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property("message");
+          res.body.message.should.equal("message sent");
+          done();
+        });
+    });
+  });
+
+  /**
    * Testing get all messages api
    */
 
   describe("GET /message", () => {
-    it("It should get all messages", () => {
+    it("It should get all messages", (done) => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -142,7 +165,7 @@ describe("Test message APIs", () => {
 
                   chai
                     .request(server)
-                    .get("/api/message/reply")
+                    .post("/api/message/reply")
                     .set("authorization", "Bearer " + token)
                     .send({
                       reply: "Hello there, i am just testing my apis",
@@ -161,34 +184,11 @@ describe("Test message APIs", () => {
   });
 
   /**
-   * Testing send message api
-   */
-
-  describe("POST /message/add", () => {
-    it("It should send a message", (done) => {
-      chai
-        .request(server)
-        .post("/api/message/add")
-        .send({
-          names: "testing user",
-          email: "testing@example.com",
-          message: "just testing messages",
-        })
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property("message");
-          res.body.message.should.equal("message sent");
-          done();
-        });
-    });
-  });
-
-  /**
    * Testing delete message api
    */
 
   describe("DELETE /message/{id}", () => {
-    it("It should delete a message", () => {
+    it("It should delete a message", (done) => {
       chai
         .request(server)
         .post("/api/user/signup")
