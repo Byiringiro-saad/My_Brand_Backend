@@ -2,13 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,24 +15,24 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: npm i 
-      
-    - name: Run tests
-      run: npm run coverage 
-    
-    - name: "Upload coverage report"
-      run: |
-       ci_env=`curl -s https://codecov.io/env`
-       npm install codecov -g
-       codecov -t 4e2e5222-6eb5-42ff-9257-e24eb7ec21c3
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run tests
+        run: npm run coverage
+
+      - name: "Upload coverage report"
+        run: |
+          ci_env=`curl -s https://codecov.io/env`
+          npm install codecov -g
+          codecov -t 4e2e5222-6eb5-42ff-9257-e24eb7ec21c3
