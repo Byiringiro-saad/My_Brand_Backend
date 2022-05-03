@@ -9,7 +9,7 @@ Backend for my portfolio🪄
 ### Test badges
 
 [![CircleCI](https://circleci.com/gh/Byiringiro-saad/My_Brand_Backend.svg?style=shield)](https://circleci.com/gh/circleci-docs)
-[![Coverage Status](https://coveralls.io/repos/github/Byiringiro-saad/My_Brand_Backend/badge.svg?branch=main)](https://coveralls.io/github/Byiringiro-saad/My_Brand_Backend?branch=main)
+[![codecov.io](https://codecov.io/github/Byiringiro-saad/My_Brand_Backend/coverage.svg?branch=main)](https://codecov.io/github/Byiringiro-saad/My_Brand_Backend)
 
 ### Installation
 
