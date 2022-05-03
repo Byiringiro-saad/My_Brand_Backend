@@ -3,10 +3,11 @@ import User from "../models/user.model.js";
 
 export default async (req, res, next) => {
   try {
-    if (!req.headers.auth) {
+    if (!req.headers["authorization"]) {
       throw new Error("no athorisation provided");
     } else {
-      const { id } = jwt.decode(req.headers.auth);
+      const auth = req.headers["authorization"].split(" ");
+      const { id } = jwt.decode(auth[1]);
 
       await User.findById(id).then((user) => {
         if (!user) {
