@@ -30,6 +30,10 @@ const options = {
         url: "http://localhost:5000/api",
         description: "localhost",
       },
+      {
+        url: "https://my-brand-back.herokuapp.com/api",
+        description: "heruko",
+      },
     ],
   },
   apis: ["./routes.js"],
