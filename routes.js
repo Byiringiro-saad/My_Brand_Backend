@@ -761,7 +761,7 @@ router.post("/experience/create", adminAuth, createExperience);
 //skills
 router.get("/skill", skills);
 router.put("/skill/:id", adminAuth, updateSkill);
-router.delete("/skill:id", adminAuth, deleteSkill);
+router.delete("/skill/:id", adminAuth, deleteSkill);
 router.post("/skill/create", adminAuth, createSkill);
 
 //skills documentation

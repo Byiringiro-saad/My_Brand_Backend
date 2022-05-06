@@ -75,7 +75,7 @@ exports.works = async (req, res) => {
 exports.updateWork = async (req, res) => {
   const data = {
     id: req.params.id,
-    image: req.file.path,
+    // image: req.file.path,
     title: req.body.title,
     link: req.body.link,
     description: req.body.description,
@@ -87,12 +87,12 @@ exports.updateWork = async (req, res) => {
       title: data.work,
       link: data.link,
       description: data.description,
-      image: data.image,
+      // image: data.image,
       cards: data.cards,
     }).then(() => {
       return res.json({
         status: "success",
-        message: "work created",
+        message: "work updated",
       });
     });
   } catch (error) {
