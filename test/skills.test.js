@@ -13,7 +13,7 @@ describe("Test skills apis", () => {
    */
 
   describe("POST /skill/create", () => {
-    it("Shoult create a skill", (done) => {
+    it("Shoult create a skill", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -59,7 +59,7 @@ describe("Test skills apis", () => {
                   //   console.log(res);
                   res.body.should.have.property("message");
                   res.body.message.should.equal("skill created");
-                  done();
+                  //   ();
                 });
             });
         });
@@ -71,14 +71,14 @@ describe("Test skills apis", () => {
    */
 
   describe("GET /skill", () => {
-    it("It should get all skills", (done) => {
+    it("It should get all skills", () => {
       chai
         .request(server)
         .get("/api/skill")
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property("data");
-          done();
+          //   ();
         });
     });
   });
@@ -141,7 +141,7 @@ describe("Test skills apis", () => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
                       res.body.message.should.equal("skill updated");
-                      done();
+                      //   ();
                     });
                 });
             });
@@ -193,7 +193,7 @@ describe("Test skills apis", () => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
                       res.body.message.should.equal("skill deleted");
-                      done();
+                      //   ();
                     });
                 });
             });

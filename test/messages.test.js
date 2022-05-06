@@ -13,7 +13,7 @@ describe("Test message APIs", () => {
    */
 
   describe("POST /message/add", () => {
-    it("It should send a message", (done) => {
+    it("It should send a message", () => {
       chai
         .request(server)
         .post("/api/message/add")
@@ -26,7 +26,7 @@ describe("Test message APIs", () => {
           res.should.have.status(200);
           res.body.should.have.property("message");
           res.body.message.should.equal("message sent");
-          done();
+          // ();
         });
     });
   });
@@ -36,7 +36,7 @@ describe("Test message APIs", () => {
    */
 
   describe("GET /message", () => {
-    it("It should get all messages", (done) => {
+    it("It should get all messages", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -67,7 +67,7 @@ describe("Test message APIs", () => {
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
-                  done();
+                  // ();
                 });
             });
         });
@@ -79,7 +79,7 @@ describe("Test message APIs", () => {
    */
 
   describe("GET /message/{id}", () => {
-    it("It should get one message", (done) => {
+    it("It should get one message", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -118,7 +118,7 @@ describe("Test message APIs", () => {
                     .end((err, res) => {
                       res.should.have.status(200);
                       res.body.should.have.property("data");
-                      done();
+                      // ();
                     });
                 });
             });
@@ -131,7 +131,7 @@ describe("Test message APIs", () => {
    */
 
   describe("POST /message/reply", () => {
-    it("It should send a reply to a message", (done) => {
+    it("It should send a reply to a message", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -176,7 +176,7 @@ describe("Test message APIs", () => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
                       res.body.message.should.equal("message replied");
-                      done();
+                      // ();
                     });
                 });
             });
@@ -189,7 +189,7 @@ describe("Test message APIs", () => {
    */
 
   describe("DELETE /message/{id}", () => {
-    it("It should delete a message", (done) => {
+    it("It should delete a message", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -229,7 +229,7 @@ describe("Test message APIs", () => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
                       res.body.message.should.equal("message deleted");
-                      done();
+                      // ();
                     });
                 });
             });
