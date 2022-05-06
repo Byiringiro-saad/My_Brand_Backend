@@ -57,7 +57,9 @@ const addHeaders = (req, res, next) => {
 app.use("/api", addHeaders, routes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.listen(5000, () => {
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
   console.log("Server has started!");
 });
 
