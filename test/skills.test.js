@@ -13,7 +13,7 @@ describe("Test skills apis", () => {
    */
 
   describe("POST /skill/create", () => {
-    it("Shoult create a skillset", (done) => {
+    it("Shoult create a skill", (done) => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -88,7 +88,7 @@ describe("Test skills apis", () => {
    */
 
   describe("PUT /skill/:id", () => {
-    it("It should get all skills", () => {
+    it("It should update a skill", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -154,7 +154,7 @@ describe("Test skills apis", () => {
    */
 
   describe("DELETE /skill/:id", () => {
-    it("It should get all skills", () => {
+    it("It should delete a skill", () => {
       chai
         .request(server)
         .post("/api/user/signup")

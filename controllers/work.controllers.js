@@ -2,19 +2,20 @@ const Work = require("../models/work.model.js");
 
 exports.createWork = async (req, res) => {
   const data = {
-    image: req.file.path,
     title: req.body.title,
     link: req.body.link,
     description: req.body.description,
     cards: req.body.cards,
   };
 
+  // const response = await v2.uploader.upload(req?.files?.picture?.tempFilePath);
+
   try {
     const work = new Work({
       title: data.work,
       link: data.link,
       description: data.description,
-      image: data.image,
+      // image: response.secure_url,
       cards: data.cards,
       createdAt: Date.now(),
     });
