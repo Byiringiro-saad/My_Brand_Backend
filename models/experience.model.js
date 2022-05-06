@@ -19,7 +19,7 @@ const experienceSchema = mongoose.Schema({
   },
   current: {
     type: Boolean,
-    required: true,
+    defaultView: true,
   },
   content: {
     type: [String],

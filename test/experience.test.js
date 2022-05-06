@@ -7,13 +7,13 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe("Test work apis", () => {
+describe("Test experience apis", () => {
   /**
-   * Testing create work api
+   * Testing creating an experience api
    */
 
-  describe("POST /work/create", () => {
-    it("It should create a work", () => {
+  describe("POST /experience/create", () => {
+    it("It should create an experience", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -39,19 +39,20 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .post("/api/work/create")
+                .post("/api/experience/create")
                 .set("authorization", "Bearer " + token)
                 .send({
-                  title: "testing",
-                  link: "link",
-                  description: "i am just testing",
-                  cards: ["mocha", "chai"],
+                  company: "testing",
+                  role: "frontend developer",
+                  startDate: Date.now(),
+                  endDate: Date.now(),
+                  content: ["mocha", "chai"],
                 })
                 .end((err, res) => {
-                  //   console.log(res);
+                  console.log(res);
                   res.should.have.status(200);
                   res.body.should.have.property("message");
-                  res.body.message.should.equal("work created");
+                  res.body.message.should.equal("experience created");
                   // done();
                 });
             });
@@ -60,14 +61,14 @@ describe("Test work apis", () => {
   });
 
   /**
-   * Testing get all works
+   * Testing get all experiences
    */
 
-  describe("GET /work", () => {
-    it("It should get all works", () => {
+  describe("GET /experience", () => {
+    it("It should get all experiences", () => {
       chai
         .request(server)
-        .get("/api/work")
+        .get("/api/experience")
         .end((err, res) => {
           //   console.log(res);
           res.should.have.status(200);
@@ -78,11 +79,11 @@ describe("Test work apis", () => {
   });
 
   /**
-   * Testing getting a work
+   * Testing getting an experience
    */
 
-  describe("GET /work/:id", () => {
-    it("It should get a work", () => {
+  describe("GET /experience/:id", () => {
+    it("It should get an experience", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -108,15 +109,14 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .get("/api/work")
+                .get("/api/experience")
                 .end((err, res) => {
-                  //   console.log(res);
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .get(`/api/work/${res.body.data[0]._id}`)
+                    .get(`/api/experience/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
@@ -130,11 +130,11 @@ describe("Test work apis", () => {
   });
 
   /**
-   * Testing updating a work
+   * Testing updating an experience
    */
 
-  describe("PUT /work/:id", () => {
-    it("It should update a work", () => {
+  describe("PUT /experience/:id", () => {
+    it("It should update an experience", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -160,25 +160,26 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .get("/api/work")
+                .get("/api/experience")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .put(`/api/work/${res.body.data[0]._id}`)
+                    .put(`/api/experience/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .send({
-                      title: "testing",
-                      link: "link",
-                      description: "i am just testing",
-                      cards: ["mocha", "chai"],
+                      company: "testing",
+                      role: "frontend developer",
+                      startDate: Date.now(),
+                      endDate: Date.now(),
+                      content: ["mocha", "chai"],
                     })
                     .end((err, res) => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
-                      res.body.message.should.equal("work updated");
+                      res.body.message.should.equal("experience updated");
                       //   ();
                     });
                 });
@@ -188,11 +189,11 @@ describe("Test work apis", () => {
   });
 
   /**
-   * Testing deleting a work
+   * Testing deleting a experience
    */
 
-  describe("DELETE /work/:id", () => {
-    it("It should update a work", () => {
+  describe("DELETE /experience/:id", () => {
+    it("It should update a experience", () => {
       chai
         .request(server)
         .post("/api/user/signup")
@@ -218,19 +219,19 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .get("/api/work")
+                .get("/api/experience")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .delete(`/api/work/${res.body.data[0]._id}`)
+                    .delete(`/api/experience/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
                       res.body.should.have.property("message");
-                      res.body.message.should.equal("work deleted");
+                      res.body.message.should.equal("experience deleted");
                       //   ();
                     });
                 });
