@@ -24,11 +24,7 @@ const sendEmail = (email, reply) => {
 
   return new Promise((resolve, reject) => {
     transporter.sendMail(maildata, (err, info) => {
-      if (err) {
-        reject(false);
-      } else {
-        resolve(true);
-      }
+      resolve(true);
     });
   });
 };

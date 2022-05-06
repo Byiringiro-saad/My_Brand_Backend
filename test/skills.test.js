@@ -12,59 +12,59 @@ describe("Test skills apis", () => {
    * Testing create skill api
    */
 
-  //   describe("POST /skill/create", () => {
-  //     it("Shoult create a skill", (done) => {
-  //       chai
-  //         .request(server)
-  //         .post("/api/user/signup")
-  //         .send({
-  //           name: "testing",
-  //           email: "test@example.com",
-  //           password: "test@123",
-  //           role: "admin",
-  //         })
-  //         .end((err, res) => {
-  //           res.should.have.status(200);
+  describe("POST /skill/create", () => {
+    it("Shoult create a skill", (done) => {
+      chai
+        .request(server)
+        .post("/api/user/signup")
+        .send({
+          name: "testing",
+          email: "test@example.com",
+          password: "test@123",
+          role: "admin",
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
 
-  //           chai
-  //             .request(server)
-  //             .post("/api/user/login")
-  //             .send({
-  //               email: "test@example.com",
-  //               password: "test@123",
-  //             })
-  //             .end((err, res) => {
-  //               res.body.should.have.property("data");
-  //               let token = res.body.data;
+          chai
+            .request(server)
+            .post("/api/user/login")
+            .send({
+              email: "test@example.com",
+              password: "test@123",
+            })
+            .end((err, res) => {
+              res.body.should.have.property("data");
+              let token = res.body.data;
 
-  //               chai
-  //                 .request(server)
-  //                 .post("/api/skill/create")
-  //                 .set("authorization", "Bearer " + token)
-  //                 .send({
-  //                   title: "Testing",
-  //                   banner: "testing",
-  //                   skills: [
-  //                     {
-  //                       name: "test",
-  //                       percent: "10",
-  //                     },
-  //                     {
-  //                       name: "test",
-  //                       percent: "40",
-  //                     },
-  //                   ],
-  //                 })
-  //                 .end((err, res) => {
-  //                   //   console.log(res);
-  //                   res.body.should.have.property("message");
-  //                   res.body.message.should.equal("skill created");
-  //                   done();
-  //                 });
-  //             });
-  //         });
-  //     });
-  //   });
+              chai
+                .request(server)
+                .post("/api/skill/create")
+                .set("authorization", "Bearer " + token)
+                .send({
+                  title: "Testing",
+                  banner: "testing",
+                  skills: [
+                    {
+                      name: "test",
+                      percent: "10",
+                    },
+                    {
+                      name: "test",
+                      percent: "40",
+                    },
+                  ],
+                })
+                .end((err, res) => {
+                  //   console.log(res);
+                  res.body.should.have.property("message");
+                  res.body.message.should.equal("skill created");
+                  done();
+                });
+            });
+        });
+    });
+  });
 
   /**
    * Testing get skills
