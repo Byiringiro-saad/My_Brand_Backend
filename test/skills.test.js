@@ -12,7 +12,7 @@ describe("Test skills apis", () => {
    * Testing create skill api
    */
 
-  describe("POST /skill/create", () => {
+  describe("POST /skills/create", () => {
     it("Shoult create a skill", () => {
       chai
         .request(server)
@@ -39,7 +39,7 @@ describe("Test skills apis", () => {
 
               chai
                 .request(server)
-                .post("/api/skill/create")
+                .post("/api/skills/create")
                 .set("authorization", "Bearer " + token)
                 .send({
                   title: "Testing",
@@ -70,11 +70,11 @@ describe("Test skills apis", () => {
    * Testing get skills
    */
 
-  describe("GET /skill", () => {
+  describe("GET /skills", () => {
     it("It should get all skills", () => {
       chai
         .request(server)
-        .get("/api/skill")
+        .get("/api/skills")
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property("data");
@@ -87,7 +87,7 @@ describe("Test skills apis", () => {
    * Testing updating a skill
    */
 
-  describe("PUT /skill/:id", () => {
+  describe("PUT /skills/:id", () => {
     it("It should update a skill", () => {
       chai
         .request(server)
@@ -114,14 +114,14 @@ describe("Test skills apis", () => {
 
               chai
                 .request(server)
-                .get("/api/skill")
+                .get("/api/skills")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .put(`/api/skill/${res.body.data[0]._id}`)
+                    .put(`/api/skills/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .send({
                       title: "Testing",
@@ -153,7 +153,7 @@ describe("Test skills apis", () => {
    * Testing deleting a skill
    */
 
-  describe("DELETE /skill/:id", () => {
+  describe("DELETE /skills/:id", () => {
     it("It should delete a skill", () => {
       chai
         .request(server)
@@ -180,14 +180,14 @@ describe("Test skills apis", () => {
 
               chai
                 .request(server)
-                .get("/api/skill")
+                .get("/api/skills")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .delete(`/api/skill/${res.body.data[0]._id}`)
+                    .delete(`/api/skills/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);

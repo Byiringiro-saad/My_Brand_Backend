@@ -157,7 +157,7 @@ exports.likeBlog = async (req, res) => {
         }).then(() => {
           return res.json({
             status: "success",
-            message: "unliked",
+            message: "blog unliked",
           });
         });
       } else {
@@ -166,7 +166,7 @@ exports.likeBlog = async (req, res) => {
         }).then(() => {
           return res.json({
             status: "success",
-            message: "liked",
+            message: "blog liked",
           });
         });
       }

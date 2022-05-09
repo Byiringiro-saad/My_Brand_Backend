@@ -77,7 +77,7 @@ describe('Testing about apis', () => {
     * Testing upadting an about content api
     */
 
-    describe('POST /about/{id}/content', () => {
+    describe('PUT /about/{id}/content', () => {
         it("should update an about content", () => {
             chai
                 .request(server)
@@ -113,7 +113,7 @@ describe('Testing about apis', () => {
 
                                     chai
                                         .request(server)
-                                        .post(`/api/about/${res.body.data[0]._id}/content`)
+                                        .put(`/api/about/${res.body.data[0]._id}/content`)
                                         .set("authorization", "Bearer " + token)
                                         .attach("about", "files/text.txt")
                                         .end((err, res) => {
@@ -134,7 +134,7 @@ describe('Testing about apis', () => {
     * Testing upadting an about image api
     */
 
-    describe('POST /about/{id}/image', () => {
+    describe('PUT /about/{id}/image', () => {
         it("should update an about image", () => {
             chai
                 .request(server)
@@ -170,7 +170,7 @@ describe('Testing about apis', () => {
 
                                     chai
                                         .request(server)
-                                        .post(`/api/about/${res.body.data[0]._id}/image`)
+                                        .put(`/api/about/${res.body.data[0]._id}/image`)
                                         .set("authorization", "Bearer " + token)
                                         .attach("picture", "images/Splash.jpg")
                                         .end((err, res) => {

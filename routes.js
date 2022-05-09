@@ -58,11 +58,11 @@ const {
 const { login, signup } = require("./controllers/users.controllers.js");
 
 //messages
-router.get("/message", adminAuth, messages);
-router.get("/message/:id", adminAuth, message);
-router.post("/message/reply", adminAuth, reply);
-router.post("/message/add", createMessage);
-router.delete("/message/:id", adminAuth, deleteMessage);
+router.get("/messages", adminAuth, messages);
+router.get("/messages/:id", adminAuth, message);
+router.post("/messages/reply", adminAuth, reply);
+router.post("/messages/add", createMessage);
+router.delete("/messages/:id", adminAuth, deleteMessage);
 
 //messages documentation
 /**
@@ -203,13 +203,13 @@ router.delete("/message/:id", adminAuth, deleteMessage);
  */
 
 //blogs
-router.get("/blog", blogs);
-router.get("/blog/:id", blog);
-router.put("/blog/:id", adminAuth, updateBlog);
-router.put("/blog/:id/like", userAuth, likeBlog);
-router.delete("/blog/:id", adminAuth, deleteBlog);
-router.put("/blog/:id/comment", userAuth, commentBlog);
-router.post("/blog/create", adminAuth, createBlog);
+router.get("/blogs", blogs);
+router.get("/blogs/:id", blog);
+router.put("/blogs/:id", adminAuth, updateBlog);
+router.put("/blogs/:id/like", userAuth, likeBlog);
+router.delete("/blogs/:id", adminAuth, deleteBlog);
+router.put("/blogs/:id/comment", userAuth, commentBlog);
+router.post("/blogs/create", adminAuth, createBlog);
 
 //blogs documentation
 /**
@@ -417,11 +417,11 @@ router.post("/blog/create", adminAuth, createBlog);
  */
 
 //works
-router.get("/work", works);
-router.get("/work/:id", adminAuth, work);
-router.put("/work/:id", adminAuth, updateWork);
-router.delete("/work/:id", adminAuth, deleteWork);
-router.post("/work/create", adminAuth, createWork);
+router.get("/works", works);
+router.get("/works/:id", adminAuth, work);
+router.put("/works/:id", adminAuth, updateWork);
+router.delete("/works/:id", adminAuth, deleteWork);
+router.post("/works/create", adminAuth, createWork);
 
 //works documentation
 /**
@@ -586,11 +586,11 @@ router.post("/work/create", adminAuth, createWork);
  */
 
 //experiences
-router.get("/experience", experiences);
-router.get("/experience/:id", adminAuth, experience);
-router.put("/experience/:id", adminAuth, updateExperience);
-router.delete("/experience/:id", adminAuth, deleteExperience);
-router.post("/experience/create", adminAuth, createExperience);
+router.get("/experiences", experiences);
+router.get("/experiences/:id", adminAuth, experience);
+router.put("/experiences/:id", adminAuth, updateExperience);
+router.delete("/experiences/:id", adminAuth, deleteExperience);
+router.post("/experiences/create", adminAuth, createExperience);
 
 //experiences documentation
 /**
@@ -759,10 +759,10 @@ router.post("/experience/create", adminAuth, createExperience);
  */
 
 //skills
-router.get("/skill", skills);
-router.put("/skill/:id", adminAuth, updateSkill);
-router.delete("/skill/:id", adminAuth, deleteSkill);
-router.post("/skill/create", adminAuth, createSkill);
+router.get("/skills", skills);
+router.put("/skills/:id", adminAuth, updateSkill);
+router.delete("/skills/:id", adminAuth, deleteSkill);
+router.post("/skills/create", adminAuth, createSkill);
 
 //skills documentation
 /**

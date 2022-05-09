@@ -12,7 +12,7 @@ describe("Test work apis", () => {
    * Testing create work api
    */
 
-  describe("POST /work/create", () => {
+  describe("POST /works/create", () => {
     it("It should create a work", () => {
       chai
         .request(server)
@@ -39,7 +39,7 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .post("/api/work/create")
+                .post("/api/works/create")
                 .set("authorization", "Bearer " + token)
                 .send({
                   title: "testing",
@@ -63,11 +63,11 @@ describe("Test work apis", () => {
    * Testing get all works
    */
 
-  describe("GET /work", () => {
+  describe("GET /works", () => {
     it("It should get all works", () => {
       chai
         .request(server)
-        .get("/api/work")
+        .get("/api/works")
         .end((err, res) => {
           //   console.log(res);
           res.should.have.status(200);
@@ -81,7 +81,7 @@ describe("Test work apis", () => {
    * Testing getting a work
    */
 
-  describe("GET /work/:id", () => {
+  describe("GET /works/:id", () => {
     it("It should get a work", () => {
       chai
         .request(server)
@@ -108,7 +108,7 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .get("/api/work")
+                .get("/api/works")
                 .end((err, res) => {
                   //   console.log(res);
                   res.should.have.status(200);
@@ -116,7 +116,7 @@ describe("Test work apis", () => {
 
                   chai
                     .request(server)
-                    .get(`/api/work/${res.body.data[0]._id}`)
+                    .get(`/api/works/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
@@ -133,7 +133,7 @@ describe("Test work apis", () => {
    * Testing updating a work
    */
 
-  describe("PUT /work/:id", () => {
+  describe("PUT /works/:id", () => {
     it("It should update a work", () => {
       chai
         .request(server)
@@ -160,14 +160,14 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .get("/api/work")
+                .get("/api/works")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .put(`/api/work/${res.body.data[0]._id}`)
+                    .put(`/api/works/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .send({
                       title: "testing",
@@ -191,7 +191,7 @@ describe("Test work apis", () => {
    * Testing deleting a work
    */
 
-  describe("DELETE /work/:id", () => {
+  describe("DELETE /works/:id", () => {
     it("It should update a work", () => {
       chai
         .request(server)
@@ -218,14 +218,14 @@ describe("Test work apis", () => {
 
               chai
                 .request(server)
-                .get("/api/work")
+                .get("/api/works")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .delete(`/api/work/${res.body.data[0]._id}`)
+                    .delete(`/api/works/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);

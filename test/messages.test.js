@@ -7,16 +7,16 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe("Test message APIs", () => {
+describe("Test messages APIs", () => {
   /**
    * Testing send message api
    */
 
-  describe("POST /message/add", () => {
+  describe("POST /messages/add", () => {
     it("It should send a message", () => {
       chai
         .request(server)
-        .post("/api/message/add")
+        .post("/api/messages/add")
         .send({
           names: "testing user",
           email: "testing@example.com",
@@ -35,7 +35,7 @@ describe("Test message APIs", () => {
    * Testing get all messages api
    */
 
-  describe("GET /message", () => {
+  describe("GET /messages", () => {
     it("It should get all messages", () => {
       chai
         .request(server)
@@ -62,7 +62,7 @@ describe("Test message APIs", () => {
 
               chai
                 .request(server)
-                .get("/api/message")
+                .get("/api/messages")
                 .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
@@ -78,7 +78,7 @@ describe("Test message APIs", () => {
    * Tetsing get one message api
    */
 
-  describe("GET /message/{id}", () => {
+  describe("GET /messages/{id}", () => {
     it("It should get one message", () => {
       chai
         .request(server)
@@ -105,7 +105,7 @@ describe("Test message APIs", () => {
 
               chai
                 .request(server)
-                .get("/api/message")
+                .get("/api/messages")
                 .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
@@ -113,7 +113,7 @@ describe("Test message APIs", () => {
 
                   chai
                     .request(server)
-                    .get(`/api/message/${res.body.data[0]._id}`)
+                    .get(`/api/messages/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
@@ -130,7 +130,7 @@ describe("Test message APIs", () => {
    * Testing send reply api
    */
 
-  describe("POST /message/reply", () => {
+  describe("POST /messages/reply", () => {
     it("It should send a reply to a message", () => {
       chai
         .request(server)
@@ -157,7 +157,7 @@ describe("Test message APIs", () => {
 
               chai
                 .request(server)
-                .get("/api/message")
+                .get("/api/messages")
                 .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
@@ -165,7 +165,7 @@ describe("Test message APIs", () => {
 
                   chai
                     .request(server)
-                    .post("/api/message/reply")
+                    .post("/api/messages/reply")
                     .set("authorization", "Bearer " + token)
                     .send({
                       reply: "Hello there, i am just testing my apis",
@@ -188,7 +188,7 @@ describe("Test message APIs", () => {
    * Testing delete message api
    */
 
-  describe("DELETE /message/{id}", () => {
+  describe("DELETE /messages/{id}", () => {
     it("It should delete a message", () => {
       chai
         .request(server)
@@ -215,7 +215,7 @@ describe("Test message APIs", () => {
 
               chai
                 .request(server)
-                .get("/api/message")
+                .get("/api/messages")
                 .set("authorization", "Bearer " + token)
                 .end((err, res) => {
                   res.should.have.status(200);
@@ -223,7 +223,7 @@ describe("Test message APIs", () => {
 
                   chai
                     .request(server)
-                    .delete(`/api/message/${res.body.data[0]._id}`)
+                    .delete(`/api/messages/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);

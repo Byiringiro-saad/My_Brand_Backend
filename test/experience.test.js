@@ -12,7 +12,7 @@ describe("Test experience apis", () => {
    * Testing creating an experience api
    */
 
-  describe("POST /experience/create", () => {
+  describe("POST /experiences/create", () => {
     it("It should create an experience", () => {
       chai
         .request(server)
@@ -39,7 +39,7 @@ describe("Test experience apis", () => {
 
               chai
                 .request(server)
-                .post("/api/experience/create")
+                .post("/api/experiences/create")
                 .set("authorization", "Bearer " + token)
                 .send({
                   company: "testing",
@@ -64,11 +64,11 @@ describe("Test experience apis", () => {
    * Testing get all experiences
    */
 
-  describe("GET /experience", () => {
+  describe("GET /experiences", () => {
     it("It should get all experiences", () => {
       chai
         .request(server)
-        .get("/api/experience")
+        .get("/api/experiences")
         .end((err, res) => {
           //   console.log(res);
           res.should.have.status(200);
@@ -82,7 +82,7 @@ describe("Test experience apis", () => {
    * Testing getting an experience
    */
 
-  describe("GET /experience/:id", () => {
+  describe("GET /experiences/:id", () => {
     it("It should get an experience", () => {
       chai
         .request(server)
@@ -109,14 +109,14 @@ describe("Test experience apis", () => {
 
               chai
                 .request(server)
-                .get("/api/experience")
+                .get("/api/experiences")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .get(`/api/experience/${res.body.data[0]._id}`)
+                    .get(`/api/experiences/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
@@ -133,7 +133,7 @@ describe("Test experience apis", () => {
    * Testing updating an experience
    */
 
-  describe("PUT /experience/:id", () => {
+  describe("PUT /experiences/:id", () => {
     it("It should update an experience", () => {
       chai
         .request(server)
@@ -160,14 +160,14 @@ describe("Test experience apis", () => {
 
               chai
                 .request(server)
-                .get("/api/experience")
+                .get("/api/experiences")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .put(`/api/experience/${res.body.data[0]._id}`)
+                    .put(`/api/experiences/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .send({
                       company: "testing",
@@ -192,7 +192,7 @@ describe("Test experience apis", () => {
    * Testing deleting a experience
    */
 
-  describe("DELETE /experience/:id", () => {
+  describe("DELETE /experiences/:id", () => {
     it("It should update a experience", () => {
       chai
         .request(server)
@@ -219,14 +219,14 @@ describe("Test experience apis", () => {
 
               chai
                 .request(server)
-                .get("/api/experience")
+                .get("/api/experiences")
                 .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.have.property("data");
 
                   chai
                     .request(server)
-                    .delete(`/api/experience/${res.body.data[0]._id}`)
+                    .delete(`/api/experiences/${res.body.data[0]._id}`)
                     .set("authorization", "Bearer " + token)
                     .end((err, res) => {
                       res.should.have.status(200);
