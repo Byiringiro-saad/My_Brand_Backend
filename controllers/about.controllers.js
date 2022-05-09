@@ -1,10 +1,12 @@
 const fs = require("fs");
+const { v2 } = require("cloudinary");
+
 const About = require("../models/about.model.js");
 
 exports.createAbout = async (req, res) => {
-  const data = {
-    image: req.file.path,
-  };
+
+
+  const response = await v2.uploader.upload(req.files.picture.tempFilePath);
 
   try {
     if (!req.files) {
@@ -18,7 +20,7 @@ exports.createAbout = async (req, res) => {
 
       const about = new About({
         file: file.name,
-        image: data.image,
+        image: response.secure_url,
       });
 
       about.save().then((response) => {
